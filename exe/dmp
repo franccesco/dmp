@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'dmp/cli'
+
+Dmp::CLI.start!
