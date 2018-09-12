@@ -1,6 +1,6 @@
 require 'dmp/version'
 
-# Top level doc.
+# Module to manage DMP operations
 module Dmp
   # default wordlist provided by EFF https://www.eff.org/dice
   @eff_wordlist = File.dirname(__FILE__) + '/dmp/assets/eff_long_wordlist.txt'

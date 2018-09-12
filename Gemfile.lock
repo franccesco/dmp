@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     dmp (0.1.0)
+      colorize
       thor
 
 GEM
@@ -9,6 +10,7 @@ GEM
   specs:
     ansi (1.5.0)
     builder (3.2.3)
+    colorize (0.8.1)
     minitest (5.11.3)
     minitest-reporters (1.3.4)
       ansi
