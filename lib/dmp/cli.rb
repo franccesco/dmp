@@ -36,12 +36,12 @@ module Dmp
     desc 'about', 'Displays version number and information'
     def about
       # Displays banner, version number and author
-    puts Dmp::BANNER.bold.red
-    puts ' version: '.bold + Dmp::VERSION.green
-    puts ' author: '.bold + '@__franccesco'.green
-    puts ' homepage: '.bold + 'https://github.com/franccesco/dmp'.green
-    puts ' learn more: '.bold + 'https://codingdose.info'.green
-    puts # extra line, somehow I like them.
+      puts Dmp::BANNER.bold.red
+      puts 'version: '.bold + Dmp::VERSION.green
+      puts 'author: '.bold + '@__franccesco'.green
+      puts 'homepage: '.bold + 'https://github.com/franccesco/dmp'.green
+      puts 'learn more: '.bold + 'https://codingdose.info'.green
+      puts # extra line, somehow I like them.
     end
   end
 end
