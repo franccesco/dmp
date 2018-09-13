@@ -2,9 +2,9 @@ PATH
   remote: .
   specs:
     dmp (0.1.0)
-      clipboard
-      colorize
-      thor
+      clipboard (~> 1.1)
+      colorize (~> 0.8)
+      thor (~> 0.20)
 
 GEM
   remote: https://rubygems.org/
