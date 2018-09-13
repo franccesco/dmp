@@ -6,12 +6,14 @@ require 'clipboard'
 module Dmp
   # Command line interface for DMP
   class CLI < Thor
+    default_task :gen_pass
     desc 'gen [length]', 'Generate a passphrase of the desired length.'
     method_option :clipboard,
                   aliases: '-c',
                   type: :boolean,
                   desc: 'Copy passphrase to clipboard.'
     def gen_pass(pass_length = 7)
+      # Generate colored passphrase
       passphrase = Dmp.gen_passphrase(pass_length.to_i)
 
       # if flag clipboard is 'true' then copy passphrase to clipboard
@@ -28,10 +30,25 @@ module Dmp
         rand_color = colors.sample
         phrase.colorize(rand_color)
       end
-
       print '[*] Passphrase: '.bold + passphrase.join(' ')
     end
 
-    default_task :gen_pass
+    desc 'about', 'Displays version number and information'
+    def about
+      # Displays banner, version number and author
+      banner = '''
+  ____    __  __   ____  
+ |  _ \  |  \/  | |  _ \ 
+ | | | | | |\/| | | |_) |
+ | |_| | | |  | | |  __/ 
+ |____/  |_|  |_| |_|
+               '''.bold.red
+    puts banner
+    puts ' version: '.bold + '0.1.0'.white
+    puts ' author: '.bold + '@__franccesco'.green
+    puts ' homepage: '.bold + 'https://github.com/franccesco/dmp'.green
+    puts ' learn more: '.bold + 'https://codingdose.info'.green
+    puts # extra line, somehow I like them.
+    end
   end
 end
