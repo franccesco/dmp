@@ -36,15 +36,8 @@ module Dmp
     desc 'about', 'Displays version number and information'
     def about
       # Displays banner, version number and author
-      banner = '''
-  ____    __  __   ____  
- |  _ \  |  \/  | |  _ \ 
- | | | | | |\/| | | |_) |
- | |_| | | |  | | |  __/ 
- |____/  |_|  |_| |_|
-               '''.bold.red
-    puts banner
-    puts ' version: '.bold + '0.1.0'.white
+    puts Dmp::BANNER.bold.red
+    puts ' version: '.bold + Dmp::VERSION.green
     puts ' author: '.bold + '@__franccesco'.green
     puts ' homepage: '.bold + 'https://github.com/franccesco/dmp'.green
     puts ' learn more: '.bold + 'https://codingdose.info'.green
