@@ -1,5 +1,5 @@
 module Dmp
-  VERSION = "0.1.1"
+  VERSION = "0.1.2"
   BANNER = '''
   ____    __  __   ____  
  |  _ \  |  \/  | |  _ \ 
