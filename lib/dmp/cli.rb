@@ -1,14 +1,26 @@
 require 'thor'
 require 'dmp'
 require 'colorize'
+require 'clipboard'
 
 module Dmp
   # Command line interface for DMP
   class CLI < Thor
     desc 'gen [length]', 'Generate a passphrase of the desired length.'
+    method_option :clipboard,
+                  aliases: '-c',
+                  type: :boolean,
+                  desc: 'Copy passphrase to clipboard.'
     def gen_pass(pass_length = 7)
       passphrase = Dmp.gen_passphrase(pass_length.to_i)
 
+      # if flag clipboard is 'true' then copy passphrase to clipboard
+      if options[:clipboard]
+        Clipboard.copy(passphrase.join(' '))
+      end
+
+      # colors array will be used to pick a randomized sample
+      # removing black cause it looks ugly in terminals
       colors = String.colors
       colors.delete(:black)
 
