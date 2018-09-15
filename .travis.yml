@@ -1,7 +1,23 @@
----
 sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.5.1
+- 2.5.1
 before_install: gem install bundler -v 1.16.4
+script:
+- bundle exec rake test
+- bundle exec cucumber features
+- bundle exec dmp about
+- bundle exec dmp gen 6 -c
+deploy:
+  provider: rubygems
+  api_key:
+    secure: UxtyKAWhfNoVFF9Mf/LRs03uZTgeXP7i1/MOtk9BUIiX/4911l5xCJKPFxeLCK9LkcUQtc/i18YaOuFZTRxQw6Bab06HL6kcm9JRDrFbHNluWZ28r3uHaMXaUm8r1a6zSPKLNPpRRPKXBy+4cOAP/uLaJIXzCsCT/A+kdjGLyTbGYECeGv+jgRkzI99Wo746VYeK2vRJu5RrB2wV57CZFlQVdZ2T8BFO3Z2oG8I5o7IV4ZHK6HmowZmoqRq6Dp4YhnCIZQwtE80iwc1xNA23al5sli/7GNgyoGgCWonN7LfjInrJvSr+Cnroo72uDZs2ChiBlEqfG8leq/K0s1SQyuJXG4vY9FQMLWpnGro0T6n1eatwHw2vnpcoCC3EXfDYUR5C/eHuJ10R8zySeH1eTFG6a5Amu/ZA97UJIwCg5imbWa6wJnUZ+Zk1GB8Y0yUOMGymgmjoAnq8AIT89Js16UvY6zJP128L8ojNsYHXf+pxXj1bk81iaIUw42NjsFFbIF21uLJvsZg6Gd7lqyQcY0CrzqtC9CxCWsvJeXAado4PTA3YDeovZfGgpLHubYp1Ck0cIXVTyQw7mLYp+HoZpcUTH6eTfAbfdVivzCOkUe8bSrmg2LpBIA1zbLIPUtoCy0WrCa7952oa+6ofknbIMzpS7gFQ3F34vCQPwp4AORo=
+  gem: dmp
+  on:
+    tags: true
+    repo: franccesco/dmp
+after_deploy:
+  - gem install dmp
+  - dmp gen 6 -c
+  - dmp about
