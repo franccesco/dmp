@@ -1,8 +1,18 @@
 # Dmp
+```
+ ____    __  __   ____  
+|  _ \  |  \/  | |  _ \ 
+| | | | | |\/| | | |_) |
+| |_| | | |  | | |  __/ 
+|____/  |_|  |_| |_|
+               
+version: 0.1.3
+author: @__franccesco
+homepage: https://github.com/franccesco/dmp
+learn more: https://codingdose.info
+```
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dmp`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+**DMP** (or _Dice My Pass_) is a simple passphrase generator that gives you a passphrase of the desired length using [EFF's long wordlist](http://eff.org/dice). This little tool was used to create a blog post on how to create a Ruby gem at codingdose.info (WIP)
 
 ## Installation
 
@@ -22,17 +32,44 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### You can use it as a library in your code.
+```ruby
+irb(main):001:0> require 'dmp'
+=> true
+irb(main):002:0> Dmp.gen_passphrase(4)
+=> ["discount", "stove", "rubbing", "underage"]
+```
 
-## Development
+### Or you can use the CLI if you want to execute it in the terminal.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+**Generate a passphrase**
+```
+$ dmp
+- Passphrase: bagpipe sprinkled unscented trespass splice outlet headlamp
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+**Generate a passphrase and copy it to the clipboard**
+```
+- Passphrase: reconvene glimmer treading swerve zebra visibly veal
+- Copied to clipboard.
+```
+
+**Generate a passphrase of your desired length**
+```
+- Passphrase: tavern silly afar luncheon cement
+```
+
+**Help**
+```
+Commands:
+  dmp about           # Displays version number and information
+  dmp gen [length]    # Generate a passphrase of the desired length.
+  dmp help [COMMAND]  # Describe available commands or one specific command
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dmp. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/franccesco/dmp. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -40,4 +77,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Dmp project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/dmp/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Dmp project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/franccesco/dmp/blob/master/CODE_OF_CONDUCT.md).

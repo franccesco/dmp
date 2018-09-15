@@ -6,8 +6,12 @@ class DmpTest < Minitest::Test
     refute_nil ::Dmp::VERSION
   end
 
-  def test_if_return_hello
-    hello = DMP::Hello.salute
-    assert(hello == 'Hello, world!', "Didn't returned hello world.")
+  def test_if_gen_passphrase_respects_length
+    passphrase3 = Dmp.gen_passphrase(3)
+    passphrase_default = Dmp.gen_passphrase
+    passphrase12 = Dmp.gen_passphrase(12)
+    assert_equal passphrase3.length, 3, 'Passphrase length != 3'
+    assert_equal passphrase_default.length, 7, 'Passphrase length != 7'
+    assert_equal passphrase12.length, 12, 'Passphrase length != 12'
   end
 end
