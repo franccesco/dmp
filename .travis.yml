@@ -18,6 +18,9 @@ deploy:
     tags: true
     repo: franccesco/dmp
 after_deploy:
-  - gem install dmp
-  - dmp gen 6 -c
-  - dmp about
+- gem install dmp
+- dmp gen 6 -c
+- dmp about
+notifications:
+  slack:
+    secure: eI+zyKfhWZ8nOzm+H5inaD1VoJVWWEqXHr2kK1T+sJdWL7Za9s+thi4VMsqTnqQSDfRoHk0ShOJxUK3qRgRs4eD+2k1xooJ4bAzrJso/y/pxWBAeoK87/tPk5tleE4XPUzX5oBnWQqITPfu+vOf1YU2F+BxvyUWQKjUCvdhD+nDsW+L0cP+VfnElcaaVoBK1dN5Is4fpbrga4U8OL9CwuB0zHBy5rUU+lO9cUr7Vz8B4mY3gIwMJCU51/qHZaPsKGOtpr7rAmMwUoERSVxREqmQXUy/43Um8UIcYiMxFXE+s381cND9iMmrXxZwaGX3FQ8eRQCRvkxFoMu56R4fupQkTe2QSpbgYM8Cfy6x8wc7th8DIF6Bd+6hWTy0l37IB/gVdk0ZvH8lq8T/NV85suqEGxegs/qxbijS5PgU3uOLoy7CGU/se9yew/Y/2wGBW6LHdPKlqZorlj+kxRbVsHKC4hwagzQL8H7p8BMnr7qxcqVhyP4e8DNScJXds++GN1BE8vjGx2wNjwxgpG7hQogx74/Y1DVzgnMu+x2k2I82QHdEUolFDArjAib453M56A1FZ+BKEF9GOOrwrdcdXcnpVayCP+5a7pHxAQENP/rWgnYiCnhOCVhBL1XjFvnG0RcjsOPUL9vzXHpScGq8lyI/MrtfTpRptojbd9+0JaUQ=
