@@ -56,6 +56,7 @@ $ dmp
 
 **Generate a passphrase of your desired length**
 ```
+$ dmp gen 5
 - Passphrase: tavern silly afar luncheon cement
 ```
 
