@@ -42,9 +42,9 @@ module Dmp
       puts '- Passphrase: '.bold + passphrase.join(' ')
       puts '- Copied to clipboard.'.bold.green if options[:clipboard]
       if vuln_count
-        puts "- WARNING: Passphrase vulnerable #{vuln_count} times!".red.bold
+        puts "- WARNING: Passphrase appears in #{vuln_count} datasets!".red.bold
       elsif options[:hibp]
-        puts '- Password is safe to use.'.green.bold
+        puts '- Password was not found in a dataset.'.green.bold
       end
     end
 
@@ -52,11 +52,18 @@ module Dmp
     def check_pass
       puts 'Enter your password, press ENTER when you\'re done.'
       password = ask('Password (hidden):'.yellow, echo: false)
+
+      # if no password set, just exit
+      if password.empty?
+        puts "Aborted.".red.bold
+        exit
+      end
+
       vuln_count = Dmp.check_pwned(password)
       if vuln_count
-        puts " Your password appears in #{vuln_count} data sets!".red.bold
+        puts " Your password appears in #{vuln_count} datasets!".red.bold
       else
-        puts " Your password/passphrase is safe to use.".green.bold
+        puts " Your password was not found in a dataset.".green.bold
       end
     end
 
