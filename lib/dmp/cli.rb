@@ -51,7 +51,7 @@ module Dmp
     desc 'check', 'Check if a password/passphrase is vulnerable.'
     def check_pass
       puts 'Enter your password, press ENTER when you\'re done.'.bold
-      password = ask('Password:'.yellow.bold, echo: false)
+      password = ask('Password (hidden):'.yellow.bold, echo: false)
       vuln_count = Dmp.check_pwned(password)
       if vuln_count
         puts " Your password appears in #{vuln_count} data sets!".bold.red
