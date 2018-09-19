@@ -48,6 +48,18 @@ module Dmp
       end
     end
 
+    desc 'check', 'Check if a password/passphrase is vulnerable.'
+    def check_pass
+      puts 'Enter your password, press ENTER when you\'re done.'.bold
+      password = ask('Password:'.yellow.bold, echo: false)
+      vuln_count = Dmp.check_pwned(password)
+      if vuln_count
+        puts " Your password appears in #{vuln_count} data sets!".bold.red
+      else
+        puts " Your password/passphrase is safe to use.".bold.green
+      end
+    end
+
     desc 'about', 'Displays version number and information'
     def about
       # Displays banner, version number and author

@@ -18,8 +18,11 @@ module Dmp
   end
 
   def self.check_pwned(passphrase)
-    passphrase_string = passphrase.join(' ')
-    hex_pass = Digest::SHA1.hexdigest(passphrase_string)
+    if passphrase.kind_of?(Array)
+      passphrase = passphrase.join(' ')
+    end
+
+    hex_pass = Digest::SHA1.hexdigest(passphrase)
     hex_pass_sample = hex_pass[0...5]
     hex_pass_rest = hex_pass[5..-1]
 

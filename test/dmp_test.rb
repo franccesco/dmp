@@ -4,7 +4,7 @@ require 'dmp'
 class DmpTest < Minitest::Test
 
   def setup
-    @unsafe_pass = ['passw0rd']
+    @unsafe_pass = 'passw0rd'
     @safe_pass = Dmp.gen_passphrase(pass_length = 12)
   end
 
