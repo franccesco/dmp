@@ -8,4 +8,8 @@ require 'simplecov-console'
 require "minitest/autorun"
 require 'minitest/reporters'
 Coveralls.wear!
+SimpleCov.formatters = SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov::Formatter::HTMLFormatter,
+  SimpleCov::Formatter::Console,
+])
 Minitest::Reporters.use!
