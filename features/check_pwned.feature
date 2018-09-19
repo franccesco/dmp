@@ -9,4 +9,4 @@ Feature: Check HIBP Database
 
   Scenario: dmp checks a secure password
     When I run `dmp gen 12 -H`
-    Then the output should contain "Password is safe to use."
+    Then the output should contain "Password was not found in a dataset."
