@@ -12,11 +12,23 @@ module Dmp
                   aliases: '-c',
                   type: :boolean,
                   desc: 'Copy passphrase to clipboard.'
+    method_option :hibp,
+                  aliases: '-H',
+                  type: :boolean,
+                  desc: 'Check if passphrase is vulnerable in HIBP database.'
     def gen_pass(pass_length = 7)
       # Generate colored passphrase
       passphrase = Dmp.gen_passphrase(pass_length.to_i)
 
       # if flag clipboard is 'true' then copy passphrase to clipboard
+      if options[:clipboard]
+        Clipboard.copy(passphrase.join(' '))
+      end
+
+      # if flag hibp is 'true' then alert the user
+      if options[:hibp]
+        vuln_count = Dmp.check_pwned(passphrase)
+      end
 
       # colors array will be used to pick a randomized sample
       # removing black cause it looks ugly in terminals
@@ -28,9 +40,11 @@ module Dmp
         phrase.colorize(rand_color)
       end
       puts '- Passphrase: '.bold + passphrase.join(' ')
-      if options[:clipboard]
-        Clipboard.copy(passphrase.join(' '))
-        puts '- Copied to clipboard.'.bold.green
+      puts '- Copied to clipboard.'.bold.green if options[:clipboard]
+      if vuln_count
+        puts "- WARNING: Passphrase vulnerable #{vuln_count} times!".red.bold
+      elsif options[:hibp]
+        puts '- Password is safe to use.'.green.bold
       end
     end
 

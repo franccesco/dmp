@@ -28,7 +28,9 @@ class DmpTest < Minitest::Test
     refute_nil vuln_count
   end
 
-  def test_safe_pass
-    
+  def test_invulnerable_pass
+    # check_pwned should not flag this passphrase
+    vuln_count = Dmp.check_pwned(@safe_pass)
+    assert_nil vuln_count
   end
 end

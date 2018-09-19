@@ -17,7 +17,7 @@ module Dmp
     random_pass
   end
 
-  def check_pwned(passphrase)
+  def self.check_pwned(passphrase)
     passphrase_string = passphrase.join(' ')
     hex_pass = Digest::SHA1.hexdigest(passphrase_string)
     hex_pass_sample = hex_pass[0...5]
