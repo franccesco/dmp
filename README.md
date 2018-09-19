@@ -57,16 +57,31 @@ $ dmp
 - Copied to clipboard.
 ```
 
-**Generate a passphrase of your desired length**
+**Generate a passphrase of your desired length and check if the password appears in HIBP datasets**
 ```
-$ dmp gen 5
+$ dmp gen 5 -H
 - Passphrase: tavern silly afar luncheon cement
+- Password is safe to use.
+```
+
+**Warns you if your password has been discovered in a HIBP dataset.**
+```
+- Passphrase: angular
+- WARNING: Passphrase vulnerable 91 times!
+```
+**Check a password of yours**
+```
+$ dmp check
+Enter your password, press ENTER when you're done.
+Password (hidden): ****
+- Your password appears in 213580 data sets!
 ```
 
 **Help**
 ```
 Commands:
   dmp about           # Displays version number and information
+  dmp check           # Check if a password/passphrase is vulnerable.
   dmp gen [length]    # Generate a passphrase of the desired length.
   dmp help [COMMAND]  # Describe available commands or one specific command
 ```
