@@ -11,7 +11,7 @@ $ dmp about
 | |_| | | |  | | |  __/ 
 |____/  |_|  |_| |_|
                
-version: 0.1.3
+version: 0.2.2
 author: @__franccesco
 homepage: https://github.com/franccesco/dmp
 learn more: https://codingdose.info
