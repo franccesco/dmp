@@ -1,5 +1,10 @@
 # Dmp
-```
+[![Build Status](https://travis-ci.org/franccesco/dmp.svg?branch=master)](https://travis-ci.org/franccesco/dmp) [![Coverage Status](https://coveralls.io/repos/github/franccesco/dmp/badge.svg?branch=develop)](https://coveralls.io/github/franccesco/dmp?branch=develop) [![Gem Version](https://badge.fury.io/rb/dmp.svg)](https://badge.fury.io/rb/dmp)
+
+**DMP** (or _Dice My Pass_) is a simple passphrase generator that gives you a passphrase of the desired length using [EFF's long wordlist](http://eff.org/dice). **This little tool was only created for a blog post on how to create a Ruby gem at codingdose.info (WIP) and should be NOT used for production**, can't say much if you like it though.
+
+```bash
+$ dmp about
  ____    __  __   ____  
 |  _ \  |  \/  | |  _ \ 
 | | | | | |\/| | | |_) |
@@ -11,8 +16,6 @@ author: @__franccesco
 homepage: https://github.com/franccesco/dmp
 learn more: https://codingdose.info
 ```
-
-**DMP** (or _Dice My Pass_) is a simple passphrase generator that gives you a passphrase of the desired length using [EFF's long wordlist](http://eff.org/dice). This little tool was used to create a blog post on how to create a Ruby gem at codingdose.info (WIP)
 
 ## Installation
 
@@ -56,6 +59,7 @@ $ dmp
 
 **Generate a passphrase of your desired length**
 ```
+$ dmp gen 5
 - Passphrase: tavern silly afar luncheon cement
 ```
 
