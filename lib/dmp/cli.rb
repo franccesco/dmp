@@ -17,6 +17,9 @@ module Dmp
       passphrase = Dmp.gen_passphrase(pass_length.to_i)
 
       # if flag clipboard is 'true' then copy passphrase to clipboard
+      if options[:clipboard]
+        Clipboard.copy(passphrase.join(' '))
+      end
 
       # colors array will be used to pick a randomized sample
       # removing black cause it looks ugly in terminals
@@ -28,10 +31,7 @@ module Dmp
         phrase.colorize(rand_color)
       end
       puts '- Passphrase: '.bold + passphrase.join(' ')
-      if options[:clipboard]
-        Clipboard.copy(passphrase.join(' '))
-        puts '- Copied to clipboard.'.bold.green
-      end
+      puts '- Copied to clipboard.'.bold.green if options[:clipboard]
     end
 
     desc 'about', 'Displays version number and information'
