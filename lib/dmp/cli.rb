@@ -7,6 +7,16 @@ module Dmp
   # Command line interface for DMP
   class CLI < Thor
     default_task :gen_pass
+
+    # Define option 'gen' that accepts a flag to copy to clipboard ('-c')
+    # and another one to check the generated password agains HIBP ('-H')
+    # This argument is the default task and it generates a 7 passphrase lenght.
+    # Usage:
+    # $ dmp gen [optional_length] [optional flags]
+    # Example:
+    # $ dmp gen 8 -c -H
+    # Or:
+    # $ dmp 8
     desc 'gen [length]', 'Generate a passphrase of the desired length.'
     method_option :clipboard,
                   aliases: '-c',
@@ -17,59 +27,47 @@ module Dmp
                   type: :boolean,
                   desc: 'Check if passphrase is vulnerable in HIBP database.'
     def gen_pass(pass_length = 7)
-      # Generate colored passphrase
-      passphrase = Dmp.gen_passphrase(pass_length.to_i)
+      new_passphrase = Dmp.gen_passphrase(pass_length.to_i)
+      Clipboard.copy(new_passphrase.join(' ')) if options[:clipboard]
+      dataset_count = Dmp.check_pwned(new_passphrase) if options[:hibp]
 
-      # if flag clipboard is 'true' then copy passphrase to clipboard
-      if options[:clipboard]
-        Clipboard.copy(passphrase.join(' '))
-      end
-
-      # if flag hibp is 'true' then alert the user
-      if options[:hibp]
-        vuln_count = Dmp.check_pwned(passphrase)
-      end
-
-      # colors array will be used to pick a randomized sample
-      # removing black cause it looks ugly in terminals
       colors = String.colors
-      colors.delete(:black)
+      colors.delete(:black) # black color looks ugly in the terminal
+      new_passphrase.map! do |phrase|
+        random_color = colors.sample
+        phrase.colorize(random_color)
+      end
 
-      passphrase.map! do |phrase|
-        rand_color = colors.sample
-        phrase.colorize(rand_color)
-      end
-      puts '- Passphrase: '.bold + passphrase.join(' ')
-      puts '- Copied to clipboard.'.bold.green if options[:clipboard]
-      if vuln_count
-        puts "- WARNING: Passphrase appears in #{vuln_count} datasets!".red.bold
-      elsif options[:hibp]
-        puts '- Password was not found in a dataset.'.green.bold
-      end
+      copy_msg = '- Copied to clipboard.'.bold.green
+      vuln_pass_msg = "- WARNING: Passphrase appears in #{dataset_count} datasets!".red.bold
+      safe_pass_msg = '- Password was not found in a dataset.'.green.bold
+
+      puts '- Passphrase: '.bold + new_passphrase.join(' ')
+      puts copy_msg if options[:clipboard]
+      puts dataset_count ? vuln_pass_msg : safe_pass_msg if options[:hibp]
     end
 
+    # Check if passphrase or password is vulnerable interatively
+    # This feature disables echo to avoid making the password visible.
+    # This feature should not ask for the password in the terminal command line
+    # (e.g: dmp check password) as it would be visible in the terminal history.
+    # Usage:
+    # $ dmp check
     desc 'check', 'Check if a password/passphrase is vulnerable.'
     def check_pass
-      puts 'Enter your password, press ENTER when you\'re done.'
+      puts "Enter your password, press ENTER when you're done."
       password = ask('Password (hidden):'.yellow, echo: false)
+      (puts "Aborted.".red.bold; exit) if password.empty?
 
-      # if no password set, just exit
-      if password.empty?
-        puts "Aborted.".red.bold
-        exit
-      end
-
-      vuln_count = Dmp.check_pwned(password)
-      if vuln_count
-        puts " Your password appears in #{vuln_count} datasets!".red.bold
-      else
-        puts " Your password was not found in a dataset.".green.bold
-      end
+      dataset_count = Dmp.check_pwned(password)
+      vuln_msg = "Your password appears in #{dataset_count} datasets!".red.bold
+      safe_msg = "Your password was not found in a dataset.".green.bold
+      puts dataset_count ? vuln_msg : safe_msg
     end
 
+    # Displays banner, version number and author
     desc 'about', 'Displays version number and information'
     def about
-      # Displays banner, version number and author
       puts Dmp::BANNER.bold.red
       puts 'version: '.bold + Dmp::VERSION.green
       puts 'author: '.bold + '@__franccesco'.green
