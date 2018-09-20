@@ -3,19 +3,9 @@
 
 **DMP** (or _Dice My Pass_) is a simple passphrase generator that gives you a passphrase of the desired length using [EFF's long wordlist](http://eff.org/dice). **This little tool was only created for a blog post on how to create a Ruby gem at codingdose.info (WIP) and should be NOT used for production**, can't say much if you like it though.
 
-```bash
-$ dmp about
- ____    __  __   ____  
-|  _ \  |  \/  | |  _ \ 
-| | | | | |\/| | | |_) |
-| |_| | | |  | | |  __/ 
-|____/  |_|  |_| |_|
-               
-version: 0.2.2
-author: @__franccesco
-homepage: https://github.com/franccesco/dmp
-learn more: https://codingdose.info
-```
+<p align="center">
+  <img src="images/dmp.gif" />
+</p>
 
 ## Installation
 
@@ -57,16 +47,31 @@ $ dmp
 - Copied to clipboard.
 ```
 
-**Generate a passphrase of your desired length**
+**Generate a passphrase of your desired length and check if the password appears in HIBP datasets**
 ```
-$ dmp gen 5
+$ dmp gen 5 -H
 - Passphrase: tavern silly afar luncheon cement
+- Password is safe to use.
+```
+
+**Warns you if your password has been discovered in a HIBP dataset.**
+```
+- Passphrase: angular
+- WARNING: Passphrase vulnerable 91 times!
+```
+**Check a password of yours**
+```
+$ dmp check
+Enter your password, press ENTER when you're done.
+Password (hidden): ****
+- Your password appears in 213580 data sets!
 ```
 
 **Help**
 ```
 Commands:
   dmp about           # Displays version number and information
+  dmp check           # Check if a password/passphrase is vulnerable.
   dmp gen [length]    # Generate a passphrase of the desired length.
   dmp help [COMMAND]  # Describe available commands or one specific command
 ```
