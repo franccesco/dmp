@@ -3,19 +3,9 @@
 
 **DMP** (or _Dice My Pass_) is a simple passphrase generator that gives you a passphrase of the desired length using [EFF's long wordlist](http://eff.org/dice). **This little tool was only created for a blog post on how to create a Ruby gem at codingdose.info (WIP) and should be NOT used for production**, can't say much if you like it though.
 
-```bash
-$ dmp about
- ____    __  __   ____  
-|  _ \  |  \/  | |  _ \ 
-| | | | | |\/| | | |_) |
-| |_| | | |  | | |  __/ 
-|____/  |_|  |_| |_|
-               
-version: 0.2.2
-author: @__franccesco
-homepage: https://github.com/franccesco/dmp
-learn more: https://codingdose.info
-```
+<p align="center">
+  <img src="images/dmp.gif" />
+</p>
 
 ## Installation
 
